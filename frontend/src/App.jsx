@@ -1,22 +1,57 @@
+import { useState } from "react";
+import "./App.css";
+import RepositoryInput from "./components/RepositoryInput";
+
 function App() {
+  const [repoUrl, setRepoUrl] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleAnalyze = () => {
+    if (!repoUrl.trim()) {
+      setMessage("Please enter a GitHub repository URL.");
+      return;
+    }
+
+    if (!repoUrl.startsWith("https://github.com/")) {
+      setMessage("Please enter a valid GitHub repository URL.");
+      return;
+    }
+
+    setMessage(`Repository selected: ${repoUrl}`);
+  };
+
   return (
-    <div className="container">
-      <div className="card">
+    <div className="app">
+      <header className="header">
         <h1>AI GitHub Repository Analyzer</h1>
 
         <p>
-          Analyze any GitHub repository using AI.
+          Understand any GitHub repository with AI-powered file analysis.
         </p>
+      </header>
 
-        <input
-          type="text"
-          placeholder="https://github.com/username/repository"
-        />
+      <main className="container">
+        <div className="analyzer-card">
+          <h2>Analyze Repository</h2>
 
-        <button>
-          Analyze Repository
-        </button>
-      </div>
+          <p className="description">
+            Enter a public GitHub repository URL to start analyzing its
+            structure, files, and code.
+          </p>
+
+          <RepositoryInput
+            repoUrl={repoUrl}
+            setRepoUrl={setRepoUrl}
+            onAnalyze={handleAnalyze}
+          />
+
+          {message && (
+            <div className="result-message">
+              {message}
+            </div>
+          )}
+        </div>
+      </main>
     </div>
   );
 }

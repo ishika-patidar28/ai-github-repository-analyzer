@@ -1,0 +1,47 @@
+.repository-input {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.repository-input input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.repository-input input:focus {
+  border-color: #2563eb;
+}
+
+.repository-input button {
+  width: 100%;
+  padding: 14px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.repository-input button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.repository-input button:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+  .repository-input input,
+  .repository-input button {
+    font-size: 14px;
+    padding: 12px;
+  }
+}
