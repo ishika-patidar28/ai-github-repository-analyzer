@@ -6,7 +6,7 @@ function App() {
   const [repoUrl, setRepoUrl] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleAnalyze = () => {
+  const handleAnalyze = async () => {
     if (!repoUrl.trim()) {
       setMessage("Please enter a GitHub repository URL.");
       return;
@@ -17,7 +17,35 @@ function App() {
       return;
     }
 
-    setMessage(`Repository selected: ${repoUrl}`);
+    try {
+      // Show loading message
+      setMessage("Sending repository to backend...");
+
+      // Send repository URL to Spring Boot backend
+      const response = await fetch("http://localhost:8080/api/analyze", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          repoUrl: repoUrl,
+        }),
+      });
+
+      // Check if backend returned an error
+      if (!response.ok) {
+        throw new Error("Backend request failed");
+      }
+
+      // Get response from backend
+      const result = await response.text();
+
+      // Display backend response
+      setMessage(result);
+    } catch (error) {
+      console.error("Error:", error);
+      setMessage("Could not connect to backend.");
+    }
   };
 
   return (
@@ -54,6 +82,7 @@ function App() {
       </main>
     </div>
   );
+
 }
 
 export default App;
