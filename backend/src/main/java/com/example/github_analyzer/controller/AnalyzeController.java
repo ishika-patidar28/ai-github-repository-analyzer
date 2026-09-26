@@ -19,11 +19,11 @@ public class AnalyzeController {
 
     @GetMapping("/hello")
     public String hello(){
-        return "hello";
+        return "AI Github Analyzer Backend is running";
     }
 
     @PostMapping("/analyze")
     public String analyzeRepository(@RequestBody AnalyzeRequest request){
-        return "Backend received repository :" +request.getRepoUrl();
+        return githubService.getRepositoryInfo(request.getRepoUrl());
     }
 }
