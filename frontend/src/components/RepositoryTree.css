@@ -1,0 +1,56 @@
+.repository-tree {
+    margin-top: 25px;
+}
+
+.repository-tree h3 {
+    margin-bottom: 12px;
+    font-size: 20px;
+}
+
+.repository-tree ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.repository-tree li {
+    margin-bottom: 8px;
+}
+
+.file-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 12px 15px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #111827;
+    color: white;
+
+    font-size: 15px;
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.file-item:hover {
+    background: #1f2937;
+    transform: translateX(3px);
+}
+
+.file-item span:first-child {
+    font-size: 17px;
+}
+
+.file-item span:last-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
